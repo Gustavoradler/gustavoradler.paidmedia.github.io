@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gustavo Radler — Paid Media Specialist & AI Automation</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f1a;
+    --bg2: #111827;
+    --bg3: #1a2235;
+    --accent: #3b82f6;
+    --accent2: #60a5fa;
+    --accent-glow: rgba(59,130,246,0.15);
+    --green: #34d399;
+    --text: #e8edf5;
+    --muted: #8892a4;
+    --border: rgba(255,255,255,0.07);
+    --card: rgba(255,255,255,0.03);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* GRID LINES */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(11,15,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-content {}
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-sub {
+    margin-top: 1.8rem;
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.65s forwards;
+  }
+
+  /* PHOTO */
+  .hero-photo-wrap {
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+    flex-shrink: 0;
+  }
+
+  .hero-photo {
+    width: 240px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px rgba(59,130,246,0.3), 0 24px 64px rgba(0,0,0,0.5);
+    filter: grayscale(15%);
+    transition: filter 0.3s;
+  }
+
+  .hero-photo:hover { filter: grayscale(0%); }
+
+  .hero-photo-badge {
+    margin-top: 1rem;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent2);
+    border-color: var(--accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59,130,246,0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+    transform: translateY(-2px);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .stat {
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.6s forwards;
+  }
+  .stat:nth-child(1) { animation-delay: 0.1s; }
+  .stat:nth-child(2) { animation-delay: 0.2s; }
+  .stat:nth-child(3) { animation-delay: 0.3s; }
+  .stat:nth-child(4) { animation-delay: 0.4s; }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.6rem;
+    color: var(--accent2);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* CONTENT SECTIONS */
+  .content-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 80px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ABOUT */
+  #about { background: var(--bg); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .about-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .stack-item:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .stack-icon { font-size: 1.2rem; width: 28px; text-align: center; }
+  .stack-name { color: var(--text); font-weight: 500; }
+  .stack-desc { color: var(--muted); font-size: 0.8rem; margin-left: auto; }
+
+  /* PROJECTS */
+  #projects { background: var(--bg2); }
+
+  /* ── FEATURED: AI WORKFLOW PROJECT ── */
+  .project-featured-hero {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .project-featured-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--green), var(--accent2));
+  }
+
+  .pfh-header {
+    padding: 2.5rem 2.5rem 0;
+  }
+
+  .pfh-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .pfh-tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .pfh-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .pfh-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 680px;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  /* WORKFLOW DIAGRAM */
+  .workflow-container {
+    padding: 2rem 2.5rem;
+    overflow-x: auto;
+  }
+
+  .workflow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    min-width: 900px;
+    position: relative;
+  }
+
+  .wf-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .wf-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 28px;
+    right: -1px;
+    width: calc(50% + 1px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    z-index: 0;
+  }
+
+  .wf-step:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent));
+    z-index: 0;
+  }
+
+  .wf-node {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  .wf-step:hover .wf-node,
+  .wf-step.active .wf-node {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    box-shadow: 0 0 20px rgba(59,130,246,0.3);
+    transform: translateY(-3px);
+  }
+
+  .wf-step.active .wf-node {
+    border-color: var(--green);
+    box-shadow: 0 0 20px rgba(52,211,153,0.3);
+  }
+
+  .wf-label {
+    margin-top: 0.8rem;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.3s;
+    line-height: 1.4;
+    padding: 0 0.3rem;
+  }
+
+  .wf-step:hover .wf-label,
+  .wf-step.active .wf-label {
+    color: var(--accent2);
+  }
+
+  .wf-step.active .wf-label {
+    color: var(--green);
+  }
+
+  /* STEP DETAIL PANEL */
+  .wf-detail {
+    margin: 0 2.5rem;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.8rem;
+    min-height: 90px;
+    display: none;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .wf-detail.visible { display: flex; }
+
+  .wf-detail-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .wf-detail-content {}
+
+  .wf-detail-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .wf-detail-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .wf-detail-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(52,211,153,0.1);
+    border: 1px solid rgba(52,211,153,0.3);
+    border-radius: 4px;
+    color: var(--green);
+    margin-top: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* PFH BOTTOM METRICS */
+  .pfh-metrics {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--border);
+  }
+
+  .pfh-metric {
+    padding: 1.2rem 1.5rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .pfh-metric:last-child { border-right: none; }
+
+  .pfh-metric-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .pfh-metric-lbl {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.2rem;
+  }
+
+  /* PROJECTS GRID (smaller cards) */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(59,130,246,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .project-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+  }
+
+  .project-card p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 4px;
+    color: var(--accent2);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .result-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    padding: 0.5rem 1rem;
+    background: rgba(52,211,153,0.08);
+    border: 1px solid rgba(52,211,153,0.25);
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg); }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent);
+  }
+
+  .timeline-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-company {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .timeline-role {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .timeline-bullets li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .timeline-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
+
+  .timeline-bullets li strong { color: var(--text); font-weight: 500; }
+
+  /* SKILLS */
+  #skills { background: var(--bg2); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-group:hover { border-color: rgba(59,130,246,0.3); }
+
+  .skill-group-title {
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .skill-list span {
+    font-size: 0.88rem;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .skill-list span:hover { color: var(--text); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .contact-inner p {
+    color: var(--muted);
+    margin: 1rem 0 2.5rem;
+    font-size: 1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent2); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-photo-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+    .hero-photo { width: 140px; height: 170px; border-radius: 12px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 2rem 1.5rem; }
+    .content-section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .pfh-metrics { grid-template-columns: repeat(2, 1fr); }
+    .pfh-metrics .pfh-metric:nth-child(2) { border-right: none; }
+    .pfh-metrics .pfh-metric:nth-child(3) { border-right: 1px solid var(--border); }
+    .workflow { min-width: 700px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">gr.portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Paid Media Specialist & AI Automation</div>
+      <h1>Gustavo<br><em>Radler</em></h1>
+      <p class="hero-sub">
+        I manage paid media campaigns and build AI-powered automations that cut operational work in half — so teams can focus on strategy, not spreadsheets.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+        <a href="https://www.linkedin.com/in/gustavo-decunto" target="_blank" class="btn btn-ghost">LinkedIn →</a>
+        <a href="mailto:gustavoradler@gmail.com" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img
+        src="https://raw.githubusercontent.com/gustavoradler/gustavoradler-cyber.github.io/main/photo.jpg"
+        alt="Gustavo Radler"
+        class="hero-photo"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='none';"
+      />
+      <div class="hero-photo-badge">Petrópolis · Brazil · Open to Remote</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-number">5+</div>
+    <div class="stat-label">Years in Paid Media</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">50%</div>
+    <div class="stat-label">Work Reduced via AI</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">−62%</div>
+    <div class="stat-label">CPL Reduction (Best Result)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">3</div>
+    <div class="stat-label">Ad Platforms Mastered</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="content-section">
+    <div class="section-label">About</div>
+    <h2>Where performance<br>meets automation</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a <strong>Paid Media Specialist & AI Automation Engineer</strong> based in Brazil, with 5+ years running paid media across Meta Ads, Google Ads, and TikTok Ads for agencies, info-products, local businesses, and SaaS.
+        </p>
+        <p>
+          What sets me apart: I don't just run campaigns — I <strong>build the systems around them</strong>. Using Claude Code and MCP servers, I've automated entire reporting pipelines, created agentic workflows that read live data and write structured reports, and implemented advanced Conversions API tracking that most agencies still do manually.
+        </p>
+        <p>
+          I'm open to <strong>remote roles, freelance contracts, or relocation</strong> for the right opportunity. I work in English (C1), Portuguese (native), and Spanish (intermediate).
+        </p>
+      </div>
+      <div class="about-stack">
+        <div class="stack-item"><span class="stack-icon">🤖</span><span class="stack-name">Claude Code</span><span class="stack-desc">AI Agents & Automation</span></div>
+        <div class="stack-item"><span class="stack-icon">📊</span><span class="stack-name">Meta Ads</span><span class="stack-desc">Advanced · Conversions API</span></div>
+        <div class="stack-item"><span class="stack-icon">🔍</span><span class="stack-name">Google Ads + GA4</span><span class="stack-desc">Search · PMax · GTM</span></div>
+        <div class="stack-item"><span class="stack-icon">⚡</span><span class="stack-name">ClickUp MCP</span><span class="stack-desc">Automated Reporting</span></div>
+        <div class="stack-item"><span class="stack-icon">📈</span><span class="stack-name">Reportei</span><span class="stack-desc">Report Generation API</span></div>
+        <div class="stack-item"><span class="stack-icon">🎯</span><span class="stack-name">Stape + CAPI</span><span class="stack-desc">Server-Side Tracking</span></div>
+        <div class="stack-item"><span class="stack-icon">🐍</span><span class="stack-name">Python / R / SQL</span><span class="stack-desc">Data & Simulations</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="content-section">
+    <div class="section-label">Projects</div>
+    <h2>What happens when an AI<br>manages your entire media operation</h2>
+
+    <!-- FEATURED: Interactive AI Workflow -->
+    <div class="project-featured-hero">
+      <div class="pfh-header">
+        <div class="pfh-tag">Live in Production · Claude Code + MCP</div>
+        <h3 class="pfh-title">The Agent That Replaced a Full Reporting Team</h3>
+        <p class="pfh-desc">
+          I built an autonomous AI agent that runs end-to-end — from pulling raw ad data to writing structured client reports and optimizing campaign settings. Zero human input. Click each step to see what happens inside.
+        </p>
+      </div>
+
+      <!-- INTERACTIVE WORKFLOW -->
+      <div class="workflow-container">
+        <div class="workflow" id="workflow">
+
+          <div class="wf-step" data-step="0">
+            <div class="wf-node">📡</div>
+            <div class="wf-label">Data<br>Ingestion</div>
+          </div>
+
+          <div class="wf-step" data-step="1">
+            <div class="wf-node">🧠</div>
+            <div class="wf-label">AI<br>Analysis</div>
+          </div>
+
+          <div class="wf-step" data-step="2">
+            <div class="wf-node">📊</div>
+            <div class="wf-label">Report<br>Generation</div>
+          </div>
+
+          <div class="wf-step" data-step="3">
+            <div class="wf-node">⚡</div>
+            <div class="wf-label">Campaign<br>Optimization</div>
+          </div>
+
+          <div class="wf-step" data-step="4">
+            <div class="wf-node">🎯</div>
+            <div class="wf-label">CAPI<br>Enrichment</div>
+          </div>
+
+          <div class="wf-step" data-step="5">
+            <div class="wf-node">✅</div>
+            <div class="wf-label">ClickUp<br>Status Update</div>
+          </div>
+
+          <div class="wf-step" data-step="6">
+            <div class="wf-node">🔁</div>
+            <div class="wf-label">Next Cycle<br>Scheduled</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DETAIL PANEL -->
+      <div class="wf-detail" id="wf-detail">
+        <div class="wf-detail-icon" id="wf-icon">📡</div>
+        <div class="wf-detail-content">
+          <div class="wf-detail-title" id="wf-title">Click a step to explore</div>
+          <div class="wf-detail-text" id="wf-text">Each node in this pipeline is an autonomous action taken by the Claude Code agent.</div>
+        </div>
+      </div>
+
+      <!-- METRICS ROW -->
+      <div class="pfh-metrics">
+        <div class="pfh-metric">
+          <div class="pfh-metric-val">~50%</div>
+          <div class="pfh-metric-lbl">Manual work cut</div>
+        </div>
+        <div class="pfh-metric">
+          <div class="pfh-metric-val">Zero</div>
+          <div class="pfh-metric-lbl">Human input needed</div>
+        </div>
+        <div class="pfh-metric">
+          <div class="pfh-metric-val">Full</div>
+          <div class="pfh-metric-lbl">Client portfolio covered</div>
+        </div>
+        <div class="pfh-metric">
+          <div class="pfh-metric-val">7</div>
+          <div class="pfh-metric-lbl">Pipeline stages</div>
+        </div>
+        <div class="pfh-metric">
+          <div class="pfh-metric-val">Weekly</div>
+          <div class="pfh-metric-lbl">Automated cadence</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SMALLER PROJECT CARDS -->
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tag">📡 Tracking Infrastructure</div>
+        <h3>Server-Side Conversions API</h3>
+        <p>
+          Designed a full server-side tracking architecture using a Stape external server connected to the web GTM container. Dramatically improved attribution quality and signal match rates — solving data loss from iOS 14+ and ad blockers. Meta's algorithm finally got the signal it needed.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Stape</span>
+          <span class="tag">GTM Server</span>
+          <span class="tag">Meta CAPI</span>
+          <span class="tag">Server-Side</span>
+        </div>
+        <div class="result-chip">↑ Signal quality · iOS 14+ · AdBlock resistant</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">📉 Lead Gen Campaign</div>
+        <h3>−62% CPL in 45 Days</h3>
+        <p>
+          Restructured a stagnant lead gen campaign on Meta Ads — rebuilt audience segmentation, creative rotation, and funnel structure. Paired with the new server-side tracking data, the improved signal quality let Meta's algorithm optimize far more effectively. CPL dropped sharply without increasing budget.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Meta Ads</span>
+          <span class="tag">Lead Gen</span>
+          <span class="tag">Audience Strategy</span>
+          <span class="tag">Creative Testing</span>
+        </div>
+        <div class="result-chip">−62% CPL · Lead quality ↑ markedly</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="content-section">
+    <div class="section-label">Experience</div>
+    <h2>5 years across agencies,<br>markets & platforms</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-period">2025 – Present</div>
+        <div class="timeline-company">Stark Marketing</div>
+        <div class="timeline-role">Paid Media Specialist</div>
+        <ul class="timeline-bullets">
+          <li>Built <strong>AI-powered reporting automations</strong> with Claude Code + MCP servers, cutting weekly manual work by 50%</li>
+          <li>Implemented <strong>server-side Conversions API</strong> tracking via Stape + GTM, improving data quality and ad algorithm performance</li>
+          <li>Managed lead-gen funnels on <strong>Meta Ads and Google Ads</strong> across a full client portfolio</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">2023 – 2025</div>
+        <div class="timeline-company">Grou Mídia</div>
+        <div class="timeline-role">Head of Operations</div>
+        <ul class="timeline-bullets">
+          <li>Led operational scaling strategy during company expansion phase</li>
+          <li>Streamlined prospecting with <strong>Apollo.io</strong>, reducing churn and improving lead quality</li>
+          <li>Ran strategic planning across production, finance, marketing, and operations</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-period">2021 – 2023</div>
+        <div class="timeline-company">Grou Mídia</div>
+        <div class="timeline-role">Paid Media Specialist</div>
+        <ul class="timeline-bullets">
+          <li>Optimized campaigns on <strong>Meta Ads, Google Ads, and TikTok Ads</strong> for info-products, launches, and local businesses</li>
+          <li>Built proprietary <strong>KPI analysis structures</strong> inside Meta Business Manager</li>
+          <li>Ran campaign performance <strong>simulations in R</strong> to forecast and improve cost-to-return ratios</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="content-section">
+    <div class="section-label">Skills</div>
+    <h2>The full stack</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Paid Advertising</div>
+        <div class="skill-list">
+          <span>Meta Ads (Advanced)</span>
+          <span>Google Ads (Search, PMax, Display)</span>
+          <span>TikTok Ads</span>
+          <span>Google Analytics 4</span>
+          <span>Google Tag Manager</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI & Automation</div>
+        <div class="skill-list">
+          <span>Claude Code</span>
+          <span>MCP Servers (ClickUp, Reportei)</span>
+          <span>Agentic Pipelines</span>
+          <span>Workflow Automation</span>
+          <span>Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tracking & Data</div>
+        <div class="skill-list">
+          <span>Conversions API (Meta CAPI)</span>
+          <span>Server-Side Tracking (Stape)</span>
+          <span>PostgreSQL</span>
+          <span>Python · R · SQL</span>
+          <span>Excel (Advanced)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">CRM & Operations</div>
+        <div class="skill-list">
+          <span>ClickUp</span>
+          <span>Apollo.io</span>
+          <span>RD Station</span>
+          <span>ManyChat</span>
+          <span>Reportei</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Reporting & Analytics</div>
+        <div class="skill-list">
+          <span>Power BI</span>
+          <span>Google Data Studio</span>
+          <span>Custom KPI Dashboards</span>
+          <span>GA4 Funnel Analysis</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages & Certs</div>
+        <div class="skill-list">
+          <span>English — C1 Advanced</span>
+          <span>Spanish — Intermediate</span>
+          <span>Portuguese — Native</span>
+          <span>ANCORD Certified</span>
+          <span>BSc Business Administration (UFRRJ)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content:center;">Contact</div>
+    <h2>Let's work together</h2>
+    <p>Open to remote roles, freelance contracts, and relocation for the right opportunity. Available worldwide.</p>
+    <div class="contact-links">
+      <a href="mailto:gustavoradler@gmail.com" class="btn btn-primary">Send Email →</a>
+      <a href="https://www.linkedin.com/in/gustavo-decunto" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/gustavoradler" target="_blank" class="btn btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Gustavo Radler · <a href="mailto:gustavoradler@gmail.com">gustavoradler@gmail.com</a> · Built with intention.
+</footer>
+
+<script>
+  // ── WORKFLOW INTERACTIVITY ──
+  const steps = [
+    {
+      icon: '📡',
+      title: 'Data Ingestion — Reportei MCP',
+      text: 'The agent connects to the Reportei MCP server and pulls live campaign metrics (impressions, clicks, spend, leads, CPL) for every client in the portfolio — Meta Ads and Instagram, for the current and prior 2-month windows.',
+      badge: 'Tool: reportei_get_metrics()'
+    },
+    {
+      icon: '🧠',
+      title: 'AI Analysis — Claude Code',
+      text: 'Claude Code reads all ingested data, compares current performance vs. the historical baseline, flags anomalies, calculates percentage deltas, and generates natural-language insights per client. No template — each analysis is dynamic.',
+      badge: 'Claude Code · Autonomous reasoning'
+    },
+    {
+      icon: '📊',
+      title: 'Report Generation — Structured Output',
+      text: 'The agent writes fully structured weekly status entries into each client\'s ClickUp document page, following a precise 4-week cycle: monthly report → first-7-days → deliverable text → 15-day report. Platform icons included.',
+      badge: 'Tool: clickup_write_page()'
+    },
+    {
+      icon: '⚡',
+      title: 'Campaign Optimization — Insight Loop',
+      text: 'Based on the analysis, the agent identifies underperforming ad sets and surface actionable recommendations — budget reallocation, audience narrowing, creative fatigue flags — ready for one-click implementation.',
+      badge: 'AI-driven optimization signals'
+    },
+    {
+      icon: '🎯',
+      title: 'CAPI Signal Enrichment — Stape + GTM',
+      text: 'Server-side event data flows through the Stape container to Meta\'s Conversions API, enriching every conversion event with hashed PII and deduplication IDs. Signal quality score stays above 8.5/10 consistently.',
+      badge: 'Stape · GTM Server · Meta CAPI'
+    },
+    {
+      icon: '✅',
+      title: 'Status Update — ClickUp Timeline',
+      text: 'The agent creates or updates Timeline events in ClickUp for each client, tagging the report cycle, attaching performance summaries, and marking the sprint status. The ops team opens ClickUp to a fully populated board.',
+      badge: 'Tool: clickup_create_timeline_event()'
+    },
+    {
+      icon: '🔁',
+      title: 'Next Cycle Scheduled — Zero Maintenance',
+      text: 'The pipeline completes and resets for the next cadence. No human triggers, no copy-paste, no manual checks. The full client portfolio is covered weekly with ~30-second pauses between clients to respect API rate limits.',
+      badge: '~50% of weekly ops time eliminated'
+    }
+  ];
+
+  const wfSteps = document.querySelectorAll('.wf-step');
+  const wfDetail = document.getElementById('wf-detail');
+  const wfIcon = document.getElementById('wf-icon');
+  const wfTitle = document.getElementById('wf-title');
+  const wfText = document.getElementById('wf-text');
+  let activeBadge = null;
+
+  wfSteps.forEach((step, i) => {
+    step.addEventListener('click', () => {
+      wfSteps.forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+
+      const data = steps[i];
+      wfIcon.textContent = data.icon;
+      wfTitle.textContent = data.title;
+      wfText.innerHTML = data.text;
+
+      // Remove old badge if any
+      const oldBadge = wfDetail.querySelector('.wf-detail-badge');
+      if (oldBadge) oldBadge.remove();
+
+      const badge = document.createElement('div');
+      badge.className = 'wf-detail-badge';
+      badge.textContent = data.badge;
+      wfDetail.querySelector('.wf-detail-content').appendChild(badge);
+
+      wfDetail.classList.add('visible');
+    });
+  });
+
+  // Auto-cycle through steps on load to invite interaction
+  let autoCycle = 0;
+  const cycleInterval = setInterval(() => {
+    if (autoCycle >= steps.length) {
+      clearInterval(cycleInterval);
+      return;
+    }
+    wfSteps[autoCycle].click();
+    autoCycle++;
+  }, 900);
+
+  // Stop auto-cycle on first user interaction
+  document.getElementById('workflow').addEventListener('click', () => {
+    clearInterval(cycleInterval);
+  }, { once: true });
+
+
+  // ── INTERSECTION OBSERVER: TIMELINE ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.timeline-item').forEach(item => {
+    observer.observe(item);
+  });
+</script>
+
+</body>
+</html>
