@@ -179,14 +179,13 @@
   }
 
   .hero-photo {
-    width: 240px;
-    height: 300px;
-    object-fit: cover;
-    object-position: center top;
+    display: block;
+    width: 280px;
+    height: auto;
     border-radius: 16px;
     border: 1px solid var(--border);
     box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px rgba(59,130,246,0.3), 0 24px 64px rgba(0,0,0,0.5);
-    filter: grayscale(15%);
+    filter: grayscale(10%);
     transition: filter 0.3s;
   }
 
@@ -874,7 +873,7 @@
   @media (max-width: 900px) {
     .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-photo-wrap { display: flex; flex-direction: column; align-items: flex-start; }
-    .hero-photo { width: 140px; height: 170px; border-radius: 12px; }
+    .hero-photo { width: 180px; height: auto; border-radius: 12px; }
   }
 
   @media (max-width: 768px) {
@@ -911,10 +910,10 @@
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-tag">Paid Media Specialist & AI Automation</div>
+      <div class="hero-tag">Paid Media · CRM & Tracking · AI Automation</div>
       <h1>Gustavo<br><em>Radler</em></h1>
       <p class="hero-sub">
-        I manage paid media campaigns and build AI-powered automations that cut operational work in half — so teams can focus on strategy, not spreadsheets.
+        I run paid media for US and Brazilian healthcare and home-service businesses — and fix what happens after the click: the CRM, the tracking, and the follow-up. Then I build Claude-powered agents so the whole operation runs with less manual work.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">View Projects ↓</a>
@@ -924,12 +923,11 @@
     </div>
     <div class="hero-photo-wrap">
       <img
-        src="https://raw.githubusercontent.com/gustavoradler/gustavoradler-cyber.github.io/main/photo.jpg"
+        src="photo.jpg"
         alt="Gustavo Radler"
         class="hero-photo"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='none';"
+        onerror="this.style.display='none';"
       />
-      <div class="hero-photo-badge">Petrópolis · Brazil · Open to Remote</div>
     </div>
   </div>
 </section>
@@ -937,20 +935,20 @@
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat">
-    <div class="stat-number">5+</div>
-    <div class="stat-label">Years in Paid Media</div>
-  </div>
-  <div class="stat">
-    <div class="stat-number">50%</div>
-    <div class="stat-label">Work Reduced via AI</div>
+    <div class="stat-number">6+</div>
+    <div class="stat-label">Years Scaling Paid Media</div>
   </div>
   <div class="stat">
     <div class="stat-number">−62%</div>
-    <div class="stat-label">CPL Reduction (Best Result)</div>
+    <div class="stat-label">CPL Cut in 45 Days</div>
   </div>
   <div class="stat">
-    <div class="stat-number">3</div>
-    <div class="stat-label">Ad Platforms Mastered</div>
+    <div class="stat-number">2×</div>
+    <div class="stat-label">Faster Ops with AI Agents</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">Daily</div>
+    <div class="stat-label">AI Metric Alerts, Zero Blind Spots</div>
   </div>
 </div>
 
@@ -962,10 +960,13 @@
     <div class="about-grid">
       <div class="about-text">
         <p>
-          I'm a <strong>Paid Media Specialist & AI Automation Engineer</strong> based in Brazil, with 5+ years running paid media across Meta Ads, Google Ads, and TikTok Ads for agencies, info-products, local businesses, and SaaS.
+          I'm a <strong>Paid Media Specialist & AI Automation Engineer</strong> based in Brazil, with 6+ years running paid media across Meta Ads, Google Ads, and TikTok Ads. Today I work with <strong>US healthcare practices and home-service contractors</strong> and Brazilian plastic surgeons.
         </p>
         <p>
-          What sets me apart: I don't just run campaigns — I <strong>build the systems around them</strong>. Using Claude Code and MCP servers, I've automated entire reporting pipelines, created agentic workflows that read live data and write structured reports, and implemented advanced Conversions API tracking that most agencies still do manually.
+          What sets me apart: I don't just run campaigns — I <strong>build and fix the systems around them</strong>. I rebuild GoHighLevel CRMs, repair broken tracking, and trace "bad lead" complaints to their real root cause — unmapped forms, broken integrations, replies nobody answered — before touching budget or creative.
+        </p>
+        <p>
+          Using Claude Code and MCP servers, I've built agent workflows that read live ad data, write structured reports, and execute approved optimizations through the Meta Marketing API — with guardrails, not blind autopilot.
         </p>
         <p>
           I'm open to <strong>remote roles, freelance contracts, or relocation</strong> for the right opportunity. I work in English (C1), Portuguese (native), and Spanish (intermediate).
@@ -975,7 +976,10 @@
         <div class="stack-item"><span class="stack-icon">🤖</span><span class="stack-name">Claude Code</span><span class="stack-desc">AI Agents & Automation</span></div>
         <div class="stack-item"><span class="stack-icon">📊</span><span class="stack-name">Meta Ads</span><span class="stack-desc">Advanced · Conversions API</span></div>
         <div class="stack-item"><span class="stack-icon">🔍</span><span class="stack-name">Google Ads + GA4</span><span class="stack-desc">Search · PMax · GTM</span></div>
-        <div class="stack-item"><span class="stack-icon">⚡</span><span class="stack-name">ClickUp MCP</span><span class="stack-desc">Automated Reporting</span></div>
+        <div class="stack-item"><span class="stack-icon">🧩</span><span class="stack-name">GoHighLevel</span><span class="stack-desc">Pipelines · Workflows · AI Bots</span></div>
+        <div class="stack-item"><span class="stack-icon">🔗</span><span class="stack-name">Zapier + WhatsApp API</span><span class="stack-desc">Lead Delivery & Messaging</span></div>
+        <div class="stack-item"><span class="stack-icon">⚡</span><span class="stack-name">MCPs</span><span class="stack-desc">Ads · CRM · Reporting Connectors</span></div>
+        <div class="stack-item"><span class="stack-icon">🗂️</span><span class="stack-name">ClickUp + Notion</span><span class="stack-desc">Project & Task Control</span></div>
         <div class="stack-item"><span class="stack-icon">📈</span><span class="stack-name">Reportei</span><span class="stack-desc">Report Generation API</span></div>
         <div class="stack-item"><span class="stack-icon">🎯</span><span class="stack-name">Stape + CAPI</span><span class="stack-desc">Server-Side Tracking</span></div>
         <div class="stack-item"><span class="stack-icon">🐍</span><span class="stack-name">Python / R / SQL</span><span class="stack-desc">Data & Simulations</span></div>
@@ -994,9 +998,9 @@
     <div class="project-featured-hero">
       <div class="pfh-header">
         <div class="pfh-tag">Live in Production · Claude Code + MCP</div>
-        <h3 class="pfh-title">The Agent That Replaced a Full Reporting Team</h3>
+        <h3 class="pfh-title">An AI Operating System for Paid Media</h3>
         <p class="pfh-desc">
-          I built an autonomous AI agent that runs end-to-end — from pulling raw ad data to writing structured client reports and optimizing campaign settings. Zero human input. Click each step to see what happens inside.
+          One connected system that monitors every account daily, optimizes campaigns with Claude Code, syncs with the CRM, runs the lead automations, and writes the client reports. The AI does the heavy lifting; I approve what goes live. Click each step to see what happens inside.
         </p>
       </div>
 
@@ -1006,32 +1010,32 @@
 
           <div class="wf-step" data-step="0">
             <div class="wf-node">📡</div>
-            <div class="wf-label">Data<br>Ingestion</div>
+            <div class="wf-label">Live Data<br>via MCP</div>
           </div>
 
           <div class="wf-step" data-step="1">
-            <div class="wf-node">🧠</div>
-            <div class="wf-label">AI<br>Analysis</div>
+            <div class="wf-node">📲</div>
+            <div class="wf-label">Daily Telegram<br>Monitor</div>
           </div>
 
           <div class="wf-step" data-step="2">
-            <div class="wf-node">📊</div>
-            <div class="wf-label">Report<br>Generation</div>
+            <div class="wf-node">🧠</div>
+            <div class="wf-label">Claude Code<br>Optimization</div>
           </div>
 
           <div class="wf-step" data-step="3">
-            <div class="wf-node">⚡</div>
-            <div class="wf-label">Campaign<br>Optimization</div>
+            <div class="wf-node">🔗</div>
+            <div class="wf-label">CRM<br>Connection</div>
           </div>
 
           <div class="wf-step" data-step="4">
-            <div class="wf-node">🎯</div>
-            <div class="wf-label">CAPI<br>Enrichment</div>
+            <div class="wf-node">⚙️</div>
+            <div class="wf-label">Lead<br>Automations</div>
           </div>
 
           <div class="wf-step" data-step="5">
-            <div class="wf-node">✅</div>
-            <div class="wf-label">ClickUp<br>Status Update</div>
+            <div class="wf-node">📊</div>
+            <div class="wf-label">Auto Client<br>Reports</div>
           </div>
 
           <div class="wf-step" data-step="6">
@@ -1058,20 +1062,20 @@
           <div class="pfh-metric-lbl">Manual work cut</div>
         </div>
         <div class="pfh-metric">
-          <div class="pfh-metric-val">Zero</div>
-          <div class="pfh-metric-lbl">Human input needed</div>
+          <div class="pfh-metric-val">Daily</div>
+          <div class="pfh-metric-lbl">Telegram alerts</div>
         </div>
         <div class="pfh-metric">
           <div class="pfh-metric-val">Full</div>
           <div class="pfh-metric-lbl">Client portfolio covered</div>
         </div>
         <div class="pfh-metric">
-          <div class="pfh-metric-val">7</div>
-          <div class="pfh-metric-lbl">Pipeline stages</div>
+          <div class="pfh-metric-val">≤20%</div>
+          <div class="pfh-metric-lbl">Safe budget steps</div>
         </div>
         <div class="pfh-metric">
-          <div class="pfh-metric-val">Weekly</div>
-          <div class="pfh-metric-lbl">Automated cadence</div>
+          <div class="pfh-metric-val">Auto</div>
+          <div class="pfh-metric-lbl">Client reports</div>
         </div>
       </div>
     </div>
@@ -1109,6 +1113,95 @@
         <div class="result-chip">−62% CPL · Lead quality ↑ markedly</div>
       </div>
 
+      <div class="project-card">
+        <div class="project-tag">🧩 CRM Rebuild · Healthcare</div>
+        <h3>CRM Rebuild for a Miami Plastic Surgery Practice</h3>
+        <p>
+          Restructured GoHighLevel end to end: consolidated overlapping pipelines, archived 2,275 stale opportunities, built bilingual SMS/WhatsApp automations and consultation calendars, and removed a wrong-brand email that every new lead was receiving. Paired with Meta lead generation and a monthly growth report.
+        </p>
+        <div class="project-tags">
+          <span class="tag">GoHighLevel</span>
+          <span class="tag">Meta Ads</span>
+          <span class="tag">WhatsApp API</span>
+          <span class="tag">Reporting</span>
+        </div>
+        <div class="result-chip">1,233 leads · ~$16 CPL · Qualified leads/mo 3 → 41</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">💬 Follow-up Systems</div>
+        <h3>The Leads Weren't Bad — Nobody Answered</h3>
+        <p>
+          A contractor blamed lead quality. The CRM showed ~30% of form leads had replied to automated texts — asking for a visit, sending availability — and never got a human answer, while the cadence kept firing. I set cadences to stop on reply and built real-time alerts that send the owner the lead's actual message.
+        </p>
+        <div class="project-tags">
+          <span class="tag">GoHighLevel</span>
+          <span class="tag">Workflows</span>
+          <span class="tag">Lead Gen</span>
+          <span class="tag">Home Services</span>
+        </div>
+        <div class="result-chip">~30% of “bad leads” were unanswered replies</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">🔎 Lead Delivery Audit</div>
+        <h3>61 Lost Leads Recovered</h3>
+        <p>
+          Meta reported leads that never reached the CRM. Root causes: six new instant forms that were never field-mapped, and a Zapier integration authenticated with a former employee's Facebook account. Fixed the mappings (the CRM backfilled every missing lead), rebuilt the integration, and added instant email alerts.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Meta Lead Ads</span>
+          <span class="tag">GoHighLevel</span>
+          <span class="tag">Zapier</span>
+          <span class="tag">Housecall Pro</span>
+        </div>
+        <div class="result-chip">61 leads recovered · 0 manual imports</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">🤖 AI DM Assistants</div>
+        <h3>AI Bots That Know When to Hand Off</h3>
+        <p>
+          Configured and audited AI agents answering Instagram and Facebook ad DMs for three US businesses. Found bots inventing a free consultation, offering slots before opening hours, and dropping ready-to-book leads. Rewrote the prompts with real pricing and service-area rules, and added human handover, opt-out tags, and team alerts.
+        </p>
+        <div class="project-tags">
+          <span class="tag">GHL Conversation AI</span>
+          <span class="tag">Prompt Design</span>
+          <span class="tag">Instagram DMs</span>
+        </div>
+        <div class="result-chip">Guardrails · Handover · No more invented offers</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">🎯 Tracking Repair</div>
+        <h3>Conversions That Never Fired</h3>
+        <p>
+          Audited healthcare accounts where bidding was flying blind: a Google Ads WhatsApp conversion with no tag behind it, a GTM container imported from a template and never configured, and Conversions API events silently blocked in Meta's restricted health category. Rebuilt the tags and mapped CRM pipeline stages back to Meta as conversion events.
+        </p>
+        <div class="project-tags">
+          <span class="tag">GTM</span>
+          <span class="tag">Google Ads</span>
+          <span class="tag">Meta CAPI</span>
+          <span class="tag">CRM Events</span>
+        </div>
+        <div class="result-chip">Conversion signal restored for Smart Bidding</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">🧠 Claude Agents · Meta API</div>
+        <h3>An AI Media Buyer With Guardrails</h3>
+        <p>
+          A Claude-based agent pipeline (analyst → strategist → optimizer → builder) that diagnoses Meta Ads accounts, proposes prioritized plans, and executes only approved changes through the Meta Marketing API. Everything is created paused, budget moves stay at 20% or less to protect the learning phase, and each change is read back to confirm it applied.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Claude Code</span>
+          <span class="tag">MCP</span>
+          <span class="tag">Meta Marketing API</span>
+          <span class="tag">Budget Pacing</span>
+        </div>
+        <div class="result-chip">Human approval · ≤20% steps · Read-back verified</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1117,8 +1210,21 @@
 <section id="experience">
   <div class="content-section">
     <div class="section-label">Experience</div>
-    <h2>5 years across agencies,<br>markets & platforms</h2>
+    <h2>6+ years across agencies,<br>markets & platforms</h2>
     <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-period">2026 – Present</div>
+        <div class="timeline-company">NLG – Next Level Growth</div>
+        <div class="timeline-role">Paid Media & CRM Specialist · US clients</div>
+        <ul class="timeline-bullets">
+          <li>Run <strong>Meta Ads lead generation</strong> for US healthcare practices and home-service contractors — 1,233 leads at ~$16 CPL in 4.5 months for one practice</li>
+          <li>Rebuilt <strong>GoHighLevel CRMs</strong> end to end: pipelines, workflows, calendars, bilingual SMS/WhatsApp automations</li>
+          <li>Diagnosed <strong>lead-delivery failures</strong> across Meta, GHL, Zapier and Housecall Pro — 61 lost leads recovered</li>
+          <li>Set up and audited <strong>AI DM assistants</strong> with guardrails, human handover and team alerts</li>
+          <li>Resolved Meta Business issues: Page ownership recovery, WhatsApp Business verification, number migration</li>
+        </ul>
+      </div>
 
       <div class="timeline-item">
         <div class="timeline-period">2025 – Present</div>
@@ -1128,6 +1234,8 @@
           <li>Built <strong>AI-powered reporting automations</strong> with Claude Code + MCP servers, cutting weekly manual work by 50%</li>
           <li>Implemented <strong>server-side Conversions API</strong> tracking via Stape + GTM, improving data quality and ad algorithm performance</li>
           <li>Managed lead-gen funnels on <strong>Meta Ads and Google Ads</strong> across a full client portfolio</li>
+          <li>Built a <strong>Claude agent pipeline</strong> that executes approved optimizations via the Meta Marketing API, with paused-by-default creation and ≤20% budget steps</li>
+          <li>Introduced <strong>cost per follower</strong> as the core top-of-funnel metric — exposing a CTR “winner” at R$6/follower vs. R$1.7–2.4 elsewhere</li>
         </ul>
       </div>
 
@@ -1176,8 +1284,9 @@
       <div class="skill-group">
         <div class="skill-group-title">AI & Automation</div>
         <div class="skill-list">
-          <span>Claude Code</span>
-          <span>MCP Servers (ClickUp, Reportei)</span>
+          <span>Claude Code · Claude AI Agents</span>
+          <span>MCP Servers (Meta Ads, ClickUp, Reportei)</span>
+          <span>Meta Marketing API</span>
           <span>Agentic Pipelines</span>
           <span>Workflow Automation</span>
           <span>Prompt Engineering</span>
@@ -1188,28 +1297,29 @@
         <div class="skill-list">
           <span>Conversions API (Meta CAPI)</span>
           <span>Server-Side Tracking (Stape)</span>
-          <span>PostgreSQL</span>
-          <span>Python · R · SQL</span>
-          <span>Excel (Advanced)</span>
+          <span>CRM → Ads Conversion Events</span>
+          <span>Power BI · Excel (Advanced)</span>
+          <span>Python · R · SQL · PostgreSQL</span>
         </div>
       </div>
       <div class="skill-group">
         <div class="skill-group-title">CRM & Operations</div>
         <div class="skill-list">
-          <span>ClickUp</span>
-          <span>Apollo.io</span>
-          <span>RD Station</span>
-          <span>ManyChat</span>
-          <span>Reportei</span>
+          <span>GoHighLevel (Pipelines, Workflows, Conversation AI)</span>
+          <span>Zapier · WhatsApp Business API</span>
+          <span>HubSpot · RD Station · Salesforce</span>
+          <span>ClickUp · Reportei</span>
+          <span>Apollo.io · ManyChat</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="skill-group-title">Reporting & Analytics</div>
+        <div class="skill-group-title">Problem Solving</div>
         <div class="skill-list">
-          <span>Power BI</span>
-          <span>Google Data Studio</span>
-          <span>Custom KPI Dashboards</span>
-          <span>GA4 Funnel Analysis</span>
+          <span>Root-cause diagnosis: lead delivery, tracking, attribution</span>
+          <span>Inherited account audits</span>
+          <span>Budget pacing without resetting learning</span>
+          <span>Meta Business Manager & asset recovery</span>
+          <span>Client reporting that shows the caveats</span>
         </div>
       </div>
       <div class="skill-group">
@@ -1249,44 +1359,44 @@
   const steps = [
     {
       icon: '📡',
-      title: 'Data Ingestion — Reportei MCP',
-      text: 'The agent connects to the Reportei MCP server and pulls live campaign metrics (impressions, clicks, spend, leads, CPL) for every client in the portfolio — Meta Ads and Instagram, for the current and prior 2-month windows.',
-      badge: 'Tool: reportei_get_metrics()'
+      title: 'Live Data via MCP — Ads, CRM & Reporting',
+      text: 'MCP connectors give the agents live access to Meta Ads, Google Ads, the CRM and the reporting platform: spend, CPM, CTR, frequency, leads, CPL, conversations and pipeline stages for every client, every day.',
+      badge: 'Meta Ads · Google Ads · CRM · Reportei'
+    },
+    {
+      icon: '📲',
+      title: 'Daily Telegram Monitor — Zero Blind Spots',
+      text: 'Every morning a monitor scans the whole portfolio and sends a Telegram summary: spend, results and cost per result per account, with red/yellow flags for CPL spikes, zero-result ad sets, fatigue and billing issues. Problems get caught the same day, not at month end.',
+      badge: 'Daily · Per-account status flags'
     },
     {
       icon: '🧠',
-      title: 'AI Analysis — Claude Code',
-      text: 'Claude Code reads all ingested data, compares current performance vs. the historical baseline, flags anomalies, calculates percentage deltas, and generates natural-language insights per client. No template — each analysis is dynamic.',
-      badge: 'Claude Code · Autonomous reasoning'
+      title: 'Claude Code Optimization — Diagnose, Plan, Execute',
+      text: 'An analyst → strategist → optimizer agent chain diagnoses each account at campaign, ad set and creative level, proposes a prioritized plan, and executes approved changes through the Meta Marketing API. Guardrails: everything is created paused, budget moves are 20% or less, and every change is read back.',
+      badge: 'Human-approved · Read-back verified'
+    },
+    {
+      icon: '🔗',
+      title: 'CRM Connection — Closing the Loop',
+      text: 'Leads land in the CRM with source and form answers, and pipeline stages (lead → qualified → booked) flow back to Meta as conversion events. The ad algorithm learns what a real booking looks like instead of optimizing for form fills.',
+      badge: 'GoHighLevel · Conversions API'
+    },
+    {
+      icon: '⚙️',
+      title: 'Lead Automations — Speed to Lead',
+      text: 'Instant SMS, email and WhatsApp follow-up, cadences that stop as soon as the lead replies, real-time alerts with the lead\'s actual message, AI DM assistants with human handover, and fallbacks for leads who never start the chat.',
+      badge: 'Workflows · WhatsApp API · AI DMs'
     },
     {
       icon: '📊',
-      title: 'Report Generation — Structured Output',
-      text: 'The agent writes fully structured weekly status entries into each client\'s ClickUp document page, following a precise 4-week cycle: monthly report → first-7-days → deliverable text → 15-day report. Platform icons included.',
-      badge: 'Tool: clickup_write_page()'
-    },
-    {
-      icon: '⚡',
-      title: 'Campaign Optimization — Insight Loop',
-      text: 'Based on the analysis, the agent identifies underperforming ad sets and surface actionable recommendations — budget reallocation, audience narrowing, creative fatigue flags — ready for one-click implementation.',
-      badge: 'AI-driven optimization signals'
-    },
-    {
-      icon: '🎯',
-      title: 'CAPI Signal Enrichment — Stape + GTM',
-      text: 'Server-side event data flows through the Stape container to Meta\'s Conversions API, enriching every conversion event with hashed PII and deduplication IDs. Signal quality score stays above 8.5/10 consistently.',
-      badge: 'Stape · GTM Server · Meta CAPI'
-    },
-    {
-      icon: '✅',
-      title: 'Status Update — ClickUp Timeline',
-      text: 'The agent creates or updates Timeline events in ClickUp for each client, tagging the report cycle, attaching performance summaries, and marking the sprint status. The ops team opens ClickUp to a fully populated board.',
-      badge: 'Tool: clickup_create_timeline_event()'
+      title: 'Auto Client Reports — Written, Not Just Charted',
+      text: 'Weekly and monthly reports are generated automatically: period-over-period metrics, what changed in the account and why, and next steps, published to the client\'s reporting dashboard and project board (ClickUp / Notion).',
+      badge: 'Reportei · ClickUp · Notion'
     },
     {
       icon: '🔁',
-      title: 'Next Cycle Scheduled — Zero Maintenance',
-      text: 'The pipeline completes and resets for the next cadence. No human triggers, no copy-paste, no manual checks. The full client portfolio is covered weekly with ~30-second pauses between clients to respect API rate limits.',
+      title: 'Next Cycle Scheduled — Always On',
+      text: 'The loop resets for the next day. No copy-paste and no manual pulls: the team starts the day with alerts, a plan and updated reports, and spends its time on decisions instead of spreadsheets.',
       badge: '~50% of weekly ops time eliminated'
     }
   ];
